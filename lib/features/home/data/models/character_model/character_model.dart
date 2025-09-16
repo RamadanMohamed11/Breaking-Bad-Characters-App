@@ -1,90 +1,52 @@
 import 'package:equatable/equatable.dart';
 
-import 'location.dart';
-import 'origin.dart';
-
 class CharacterModel extends Equatable {
   final int? id;
-  final String name;
-  final String? status;
-  final String? species;
-  final String? type;
-  final String? gender;
-  final Origin? origin;
-  final Location? location;
-  final String? image;
-  final List<String> episode;
-  final String? url;
-  final DateTime? created;
+  final String firstName;
+  final String lastName;
+  final String fullName;
+  final String title;
+  final String family;
+  final String image;
+  final String imageUrl;
 
   const CharacterModel({
     this.id,
-    required this.name,
-    this.status,
-    this.species,
-    this.type,
-    this.gender,
-    this.origin,
-    this.location,
-    this.image,
-    required this.episode,
-    this.url,
-    this.created,
+    required this.firstName,
+    required this.lastName,
+    required this.fullName,
+    required this.title,
+    required this.family,
+    required this.image,
+    required this.imageUrl,
   });
 
   factory CharacterModel.fromJson(Map<String, dynamic> json) {
     return CharacterModel(
       id: json['id'] as int?,
-      name: json['name'] as String,
-      status: json['status'] as String?,
-      species: json['species'] as String?,
-      type: json['type'] as String?,
-      gender: json['gender'] as String?,
-      origin: json['origin'] == null
-          ? null
-          : Origin.fromJson(json['origin'] as Map<String, dynamic>),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
-      image: json['image'] as String?,
-      episode: json['episode'] as List<String>,
-      url: json['url'] as String?,
-      created: json['created'] == null
-          ? null
-          : DateTime.parse(json['created'] as String),
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      fullName: json['fullName'] as String,
+      title: json['title'] as String,
+      family: json['family'] as String,
+      image: json['image'] as String,
+      imageUrl: json['imageUrl'] as String,
     );
   }
 
   Map<String, dynamic> toJson() => {
     'id': id,
-    'name': name,
-    'status': status,
-    'species': species,
-    'type': type,
-    'gender': gender,
-    'origin': origin?.toJson(),
-    'location': location?.toJson(),
+    'firstName': firstName,
+    'lastName': lastName,
+    'fullName': fullName,
+    'title': title,
+    'family': family,
     'image': image,
-    'episode': episode,
-    'url': url,
-    'created': created?.toIso8601String(),
+    'imageUrl': imageUrl,
   };
 
   @override
   List<Object?> get props {
-    return [
-      id,
-      name,
-      status,
-      species,
-      type,
-      gender,
-      origin,
-      location,
-      image,
-      episode,
-      url,
-      created,
-    ];
+    return [id, firstName, lastName, fullName, title, family, image, imageUrl];
   }
 }
